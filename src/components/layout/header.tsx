@@ -31,7 +31,7 @@ export function Header() {
     return (
       <header className="sticky top-0 z-40 flex h-16 w-full items-center justify-between border-b border-slate-200 bg-white px-4 sm:px-6">
         <div className="flex items-center gap-4">
-          <Link href="/" className="flex items-center gap-2 text-emerald-600 font-bold text-xl">
+          <Link href="/" className="flex items-center gap-2 text-blue-600 font-bold text-xl">
             <Sparkles className="h-6 w-6" />
             <span className="hidden sm:inline-block">RankFlow Admin</span>
           </Link>
@@ -40,7 +40,7 @@ export function Header() {
           <Link href="/" className="text-sm text-slate-500 hover:text-slate-900 transition-colors">
             View Site
           </Link>
-          <div className="h-8 w-8 rounded-full bg-emerald-100 flex items-center justify-center text-emerald-700">
+          <div className="h-8 w-8 rounded-full bg-blue-50 flex items-center justify-center text-blue-700">
             <User className="h-4 w-4" />
           </div>
         </div>
@@ -49,12 +49,12 @@ export function Header() {
   }
 
   return (
-    <header className="sticky top-0 z-50 w-full border-b border-white/10 bg-slate-900/80 backdrop-blur-md">
+    <header className="sticky top-0 z-50 w-full border-b border-slate-200 bg-white/90 backdrop-blur-md">
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex h-16 items-center justify-between">
           <div className="flex items-center gap-8">
-            <Link href="/" className="flex items-center gap-2 text-emerald-400 font-bold text-xl">
-              <Sparkles className="h-6 w-6" />
+            <Link href="/" className="flex items-center gap-2 text-slate-900 font-bold text-xl tracking-tight">
+              <Sparkles className="h-6 w-6 text-blue-600" />
               <span>{SITE_CONFIG.name}</span>
             </Link>
 
@@ -64,10 +64,10 @@ export function Header() {
                   key={item.href}
                   href={item.href}
                   className={cn(
-                    "text-sm font-medium transition-colors hover:text-emerald-400",
+                    "text-sm font-medium transition-colors hover:text-blue-600",
                     pathname === item.href || pathname?.startsWith(`${item.href}/`)
-                      ? "text-emerald-400"
-                      : "text-slate-300"
+                      ? "text-blue-600"
+                      : "text-slate-600"
                   )}
                 >
                   {item.label}
@@ -79,19 +79,19 @@ export function Header() {
           <div className="hidden md:flex items-center gap-4">
             <button 
               onClick={() => setIsSearchOpen(true)}
-              className="text-slate-300 hover:text-white transition-colors"
+              className="text-slate-600 hover:text-blue-600 transition-colors"
             >
               <Search className="h-5 w-5" />
             </button>
             <Link 
               href="/submit-tool" 
-              className="text-sm font-medium text-slate-300 hover:text-white transition-colors"
+              className="text-sm font-medium text-slate-600 hover:text-blue-600 transition-colors"
             >
               Submit Tool
             </Link>
             <Link 
               href="/admin/login" 
-              className="inline-flex h-9 items-center justify-center rounded-md bg-emerald-500 px-4 py-2 text-sm font-medium text-white shadow transition-colors hover:bg-emerald-600 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-emerald-500"
+              className="inline-flex h-10 items-center justify-center rounded-lg bg-blue-600 px-6 py-2 text-sm font-medium text-white shadow transition-colors hover:bg-blue-700 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-600"
             >
               Login
             </Link>
@@ -99,7 +99,7 @@ export function Header() {
 
           {/* Mobile menu button */}
           <button
-            className="md:hidden p-2 text-slate-300 hover:text-white"
+            className="md:hidden p-2 text-slate-600 hover:text-blue-600"
             onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
           >
             {isMobileMenuOpen ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}
@@ -109,7 +109,7 @@ export function Header() {
 
       {/* Mobile menu */}
       {isMobileMenuOpen && (
-        <div className="md:hidden border-t border-white/10 bg-slate-900 px-4 py-4 pb-6">
+        <div className="md:hidden border-t border-slate-200 bg-white px-4 py-4 pb-6 shadow-lg absolute w-full left-0 top-16">
           <nav className="flex flex-col gap-4">
             {NAV_ITEMS.map((item) => (
               <Link
@@ -117,27 +117,27 @@ export function Header() {
                 href={item.href}
                 onClick={() => setIsMobileMenuOpen(false)}
                 className={cn(
-                  "text-base font-medium transition-colors hover:text-emerald-400",
+                  "text-base font-medium transition-colors hover:text-blue-600",
                   pathname === item.href
-                    ? "text-emerald-400"
-                    : "text-slate-300"
+                    ? "text-blue-600"
+                    : "text-slate-600"
                 )}
               >
                 {item.label}
               </Link>
             ))}
-            <hr className="border-white/10 my-2" />
+            <hr className="border-slate-200 my-2" />
             <Link 
               href="/submit-tool" 
               onClick={() => setIsMobileMenuOpen(false)}
-              className="text-base font-medium text-slate-300 hover:text-white transition-colors"
+              className="text-base font-medium text-slate-600 hover:text-blue-600 transition-colors"
             >
               Submit Tool
             </Link>
             <Link 
               href="/admin/login" 
               onClick={() => setIsMobileMenuOpen(false)}
-              className="inline-flex h-10 w-full items-center justify-center rounded-md bg-emerald-500 px-4 py-2 text-base font-medium text-white shadow transition-colors hover:bg-emerald-600"
+              className="inline-flex h-12 w-full items-center justify-center rounded-lg bg-blue-600 px-4 py-2 text-base font-medium text-white shadow transition-colors hover:bg-blue-700"
             >
               Login
             </Link>

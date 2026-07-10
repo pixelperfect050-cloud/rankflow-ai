@@ -7,10 +7,10 @@
 /* ---------- Custom Properties ---------- */
 :root {
   /* Primary */
-  --color-primary: #10b981;
-  --color-primary-hover: #059669;
-  --color-primary-light: #d1fae5;
-  --color-primary-dark: #047857;
+  --color-primary: #3858e9;
+  --color-primary-hover: #212cff;
+  --color-primary-light: #e0e7ff;
+  --color-primary-dark: #1e3a8a;
   
   /* Backgrounds */
   --color-bg: #ffffff;
@@ -341,7 +341,7 @@ a:hover {
 
 /* ---------- Gradient Utilities ---------- */
 .gradient-primary {
-  background: linear-gradient(135deg, #10b981 0%, #0ea5e9 100%);
+  background: linear-gradient(135deg, #3858e9 0%, #212cff 100%);
 }
 
 .gradient-hero {
@@ -349,7 +349,7 @@ a:hover {
 }
 
 .gradient-text {
-  background: linear-gradient(135deg, #10b981 0%, #0ea5e9 100%);
+  background: linear-gradient(135deg, #3858e9 0%, #212cff 100%);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
@@ -361,7 +361,7 @@ a:hover {
   top: 0;
   left: 0;
   height: 3px;
-  background: linear-gradient(90deg, #10b981, #0ea5e9);
+  background: linear-gradient(90deg, #3858e9, #212cff);
   z-index: 9999;
   transition: width 100ms linear;
 }

@@ -11,7 +11,7 @@ export function ProductCard({ product }: ProductCardProps) {
   return (
     <Link 
       href={`/product/${product.slug}`}
-      className="group block bg-white rounded-2xl border border-slate-200 shadow-sm hover:shadow-xl hover:-translate-y-1 transition-all duration-300 overflow-hidden"
+      className="group block bg-white rounded-2xl border border-slate-200 shadow-sm hover:shadow-md hover:border-blue-600 hover:-translate-y-1 transition-all duration-300 overflow-hidden"
     >
       <div className="p-6">
         <div className="flex justify-between items-start mb-4">
@@ -23,7 +23,7 @@ export function ProductCard({ product }: ProductCardProps) {
               </span>
             </div>
             <div>
-              <h3 className="font-bold text-lg text-slate-900 group-hover:text-emerald-600 transition-colors">
+              <h3 className="font-bold text-lg text-slate-900 group-hover:text-blue-600 transition-colors">
                 {product.name}
               </h3>
               <p className="text-xs text-slate-500 font-medium">
@@ -31,9 +31,9 @@ export function ProductCard({ product }: ProductCardProps) {
               </p>
             </div>
           </div>
-          <div className="flex items-center gap-1 bg-emerald-50 px-2 py-1 rounded-full border border-emerald-100">
-            <Activity className="w-3.5 h-3.5 text-emerald-600" />
-            <span className="text-xs font-bold text-emerald-700">{product.health_score || 85}</span>
+          <div className="flex items-center gap-1 bg-blue-50 px-2 py-1 rounded-full border border-blue-100">
+            <Activity className="w-3.5 h-3.5 text-blue-600" />
+            <span className="text-xs font-bold text-blue-700">{product.health_score || 85}</span>
           </div>
         </div>
 
@@ -54,7 +54,7 @@ export function ProductCard({ product }: ProductCardProps) {
               </span>
             )}
           </div>
-          <span className="text-emerald-600 flex items-center gap-1 text-sm font-medium group-hover:gap-2 transition-all">
+          <span className="text-blue-600 flex items-center gap-1 text-sm font-medium group-hover:gap-2 transition-all">
             View <ArrowRight className="w-4 h-4" />
           </span>
         </div>
