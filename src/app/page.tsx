@@ -7,16 +7,19 @@ import { ProductRepository } from '@/features/products/repository/product.reposi
 export const revalidate = 900 // 15 minutes cache
 
 export default async function HomePage() {
-  const repo = new ProductRepository()
-  
-  // Fetch real data (Using workspace ID 0 for global public data, or whatever the default is)
-  // Since we don't have multi-tenant public yet, we'll fetch across the board or use a default workspace
-  const WORKSPACE_ID = "00000000-0000-0000-0000-000000000000";
-  const allProducts = await repo.searchProducts(WORKSPACE_ID);
-  
-  // Simulate "Trending", "Latest" by slicing or sorting (in reality, SQL would sort this)
-  const trendingProducts = allProducts.slice(0, 3);
-  const latestProducts = allProducts.slice(0, 6);
+  let trendingProducts: any[] = [];
+  let latestProducts: any[] = [];
+
+  try {
+    const repo = new ProductRepository()
+    const WORKSPACE_ID = "00000000-0000-0000-0000-000000000000";
+    const allProducts = await repo.searchProducts(WORKSPACE_ID);
+    trendingProducts = allProducts.slice(0, 3);
+    latestProducts = allProducts.slice(0, 6);
+  } catch (e) {
+    // Database not ready or env not configured — render with empty state
+    console.error('Homepage data fetch failed:', e);
+  }
 
   return (
     <main className="flex-1 w-full bg-slate-50">
