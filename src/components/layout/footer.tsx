@@ -6,15 +6,15 @@ export function Footer() {
   return (
     <footer className="bg-white border-t border-slate-200">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 py-16 lg:py-24">
-        <div className="grid grid-cols-1 md:grid-cols-4 gap-12 lg:gap-8">
+        <div className="grid grid-cols-2 lg:grid-cols-5 gap-12 lg:gap-8">
           
           {/* Column 1: Brand */}
-          <div className="md:col-span-1">
+          <div className="col-span-2 lg:col-span-2">
             <Link href="/" className="flex items-center gap-2 text-slate-900 font-extrabold text-xl tracking-tight mb-4">
               <Sparkles className="h-5 w-5 text-indigo-600" />
               <span>{SITE_CONFIG.name}</span>
             </Link>
-            <p className="text-sm text-slate-500 leading-relaxed mb-6 pr-4">
+            <p className="text-sm text-slate-500 leading-relaxed mb-6 pr-4 max-w-sm">
               The ultimate directory for finding, comparing, and mastering software tools to scale your business.
             </p>
             <div className="flex gap-4 text-sm font-medium text-slate-400">

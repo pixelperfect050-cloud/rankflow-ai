@@ -50,14 +50,14 @@ export default async function HomePage() {
 
           {/* Minimal Spotlight Search */}
           <div className="relative group w-full max-w-[650px] mx-auto mb-10">
-            <div className="relative flex items-center w-full h-[72px] bg-white border-2 border-slate-200 rounded-[24px] shadow-sm focus-within:shadow-lg focus-within:border-indigo-500 transition-all overflow-hidden">
-              <Search className="absolute left-6 w-7 h-7 text-slate-400 group-focus-within:text-indigo-600 transition-colors" />
+            <div className="flex items-center w-full h-[72px] bg-white border-2 border-slate-200 rounded-[24px] shadow-sm focus-within:shadow-lg focus-within:border-indigo-500 transition-all overflow-hidden px-4">
+              <Search className="w-7 h-7 text-slate-400 group-focus-within:text-indigo-600 transition-colors shrink-0 mx-2" />
               <input 
                 type="text" 
                 placeholder="Search software..."
-                className="w-full h-full pl-16 pr-28 bg-transparent outline-none text-xl text-slate-900 placeholder:text-slate-400 font-medium"
+                className="flex-1 h-full bg-transparent outline-none text-xl text-slate-900 placeholder:text-slate-400 font-medium px-2"
               />
-              <div className="absolute right-4 flex items-center gap-1.5 px-3 py-2 rounded-[14px] bg-slate-100 border border-slate-200 text-slate-500 text-sm font-bold tracking-widest">
+              <div className="flex items-center gap-1.5 px-3 py-2 rounded-[14px] bg-slate-100 border border-slate-200 text-slate-500 text-sm font-bold tracking-widest shrink-0">
                 Ctrl K
               </div>
             </div>
@@ -157,9 +157,9 @@ export default async function HomePage() {
       {/* 5. POPULAR COMPARISONS */}
       <section className="py-24 bg-slate-50">
         <div className="max-w-7xl mx-auto px-4 sm:px-6">
-          <div className="text-center mb-16">
-            <h2 className="text-3xl md:text-4xl font-black tracking-tight mb-4 text-slate-900">Popular Comparisons</h2>
-            <p className="text-slate-500 text-lg font-medium max-w-2xl mx-auto">See head-to-head data on pricing, features, and user reviews before you buy.</p>
+          <div className="mb-12">
+            <h2 className="text-3xl md:text-4xl font-black tracking-tight mb-2 text-slate-900">Popular Comparisons</h2>
+            <p className="text-slate-500 text-lg font-medium">See head-to-head data on pricing, features, and user reviews before you buy.</p>
           </div>
           
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
@@ -203,11 +203,21 @@ export default async function HomePage() {
               'Marketing Tools',
               'Resume Builders'
             ].map((collection, i) => (
-              <Link key={i} href="/collections" className="group relative overflow-hidden rounded-[20px] bg-slate-900 aspect-square flex items-end p-8 hover:-translate-y-1 hover:shadow-xl transition-all duration-300">
-                <div className="absolute inset-0 bg-gradient-to-t from-slate-900 via-slate-900/40 to-transparent z-10"></div>
-                <div className="absolute inset-0 bg-indigo-600 opacity-0 group-hover:opacity-40 transition-opacity z-0 mix-blend-overlay"></div>
+              <Link key={i} href="/collections" className="group relative overflow-hidden rounded-[20px] aspect-square flex items-end p-8 hover:-translate-y-1 hover:shadow-xl transition-all duration-300">
+                <div className="absolute inset-0 bg-gradient-to-br from-slate-800 to-slate-900"></div>
+                
+                {/* Decorative Pattern */}
+                <div className="absolute inset-0 opacity-20 bg-[radial-gradient(circle_at_2px_2px,rgba(255,255,255,0.15)_1px,transparent_0)] bg-[size:16px_16px]"></div>
+                
+                <div className="absolute inset-0 bg-gradient-to-t from-slate-900 via-slate-900/60 to-transparent z-10"></div>
+                <div className="absolute inset-0 bg-indigo-500 opacity-0 group-hover:opacity-20 transition-opacity z-0 mix-blend-overlay"></div>
+                
+                {/* Content */}
                 <div className="relative z-20 w-full">
-                  <h3 className="text-2xl font-black text-white mb-3 leading-tight">{collection}</h3>
+                  <div className="w-12 h-12 bg-white/10 backdrop-blur-md rounded-[12px] border border-white/20 flex items-center justify-center mb-6">
+                    <Layers className="w-6 h-6 text-white" />
+                  </div>
+                  <h3 className="text-2xl font-black text-white mb-3 leading-tight group-hover:text-indigo-300 transition-colors">{collection}</h3>
                   <div className="text-sm font-bold text-slate-300 flex items-center gap-2">
                     View collection <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
                   </div>
@@ -228,17 +238,17 @@ export default async function HomePage() {
           <h2 className="text-5xl md:text-[56px] font-black text-slate-900 tracking-tight mb-6">Stay ahead.</h2>
           <p className="text-xl text-slate-500 font-medium mb-12">Weekly software updates, deals, and insights directly to your inbox. No spam, ever.</p>
           
-          <form className="flex flex-col sm:flex-row gap-4 max-w-xl mx-auto">
+          <div className="flex w-full max-w-xl mx-auto bg-white p-2 border border-slate-200 rounded-[20px] shadow-sm focus-within:shadow-md focus-within:border-indigo-400 transition-all">
             <input 
               type="email" 
               placeholder="Enter your email address" 
-              className="flex-1 h-16 px-6 rounded-[16px] border border-slate-200 text-lg font-medium outline-none focus:border-indigo-500 focus:ring-4 focus:ring-indigo-50 transition-all shadow-sm placeholder:text-slate-400"
+              className="flex-1 h-14 px-4 bg-transparent outline-none text-lg font-medium placeholder:text-slate-400 text-slate-900"
               required
             />
-            <button className="h-16 px-10 rounded-[16px] bg-slate-900 hover:bg-indigo-600 text-white font-bold text-lg shadow-md transition-colors whitespace-nowrap">
+            <button className="h-14 px-8 rounded-[14px] bg-slate-900 hover:bg-indigo-600 text-white font-bold text-lg transition-colors whitespace-nowrap">
               Subscribe
             </button>
-          </form>
+          </div>
         </div>
       </section>
       
