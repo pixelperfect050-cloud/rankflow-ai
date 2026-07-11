@@ -31,128 +31,58 @@ export default async function HomePage() {
   return (
     <main className="flex-1 w-full bg-slate-50 overflow-hidden">
       
-      {/* 1. SPLIT HERO SECTION */}
-      <section className="relative bg-white border-b border-slate-200 pt-16 pb-24 md:pt-24 md:pb-32 overflow-hidden">
-        {/* Glow Effects */}
-        <div className="absolute top-0 right-0 w-[600px] h-[600px] bg-indigo-500/10 blur-[100px] rounded-full pointer-events-none translate-x-1/3 -translate-y-1/3"></div>
-        <div className="absolute top-1/2 right-1/4 w-[400px] h-[400px] bg-cyan-400/10 blur-[80px] rounded-full pointer-events-none"></div>
+      {/* 1. MINIMAL LINEAR HERO SECTION */}
+      <section className="relative bg-white border-b border-slate-200 pt-32 pb-24 md:pt-40 md:pb-32 overflow-hidden flex flex-col items-center justify-center min-h-[70vh]">
+        
+        {/* Soft subtle glow (Not overpowering) */}
+        <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[800px] h-[400px] bg-indigo-500/5 blur-[120px] rounded-full pointer-events-none"></div>
 
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 relative z-10">
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-8 items-center min-h-[500px]">
-            
-            {/* Left Column: Text & Search */}
-            <div className="flex flex-col max-w-[650px] mx-auto lg:mx-0 lg:pr-8 text-center lg:text-left">
-              
-              {/* Social Proof Badges */}
-              <div className="flex flex-wrap items-center justify-center lg:justify-start gap-4 mb-8">
-                <div className="flex gap-1 text-amber-400">
-                  {[1, 2, 3, 4, 5].map((star) => (
-                    <Star key={star} className="w-5 h-5 fill-current" />
-                  ))}
-                </div>
-                <div className="text-sm font-bold text-slate-500 uppercase tracking-widest flex items-center gap-2">
-                  <CheckCircle2 className="w-4 h-4 text-emerald-500" />
-                  Trusted by 10,000+ Teams
-                </div>
-              </div>
+        <div className="max-w-4xl mx-auto px-4 sm:px-6 relative z-10 text-center w-full">
+          
+          <h1 className="text-[56px] md:text-[80px] font-black text-slate-900 tracking-tighter leading-[1.05] mb-8">
+            Discover software <br className="hidden md:block"/>
+            that actually <span className="text-transparent bg-clip-text bg-gradient-to-r from-indigo-600 to-indigo-400">helps you grow.</span>
+          </h1>
+          
+          <p className="text-xl md:text-2xl text-slate-500 font-medium mb-12 max-w-2xl mx-auto">
+            Search 15,000+ verified products, comparisons and guides.
+          </p>
 
-              <h1 className="text-5xl md:text-[64px] font-black text-slate-900 tracking-tight leading-[1.05] mb-8">
-                Discover software <br className="hidden md:block"/>
-                that actually <span className="text-transparent bg-clip-text bg-gradient-to-r from-indigo-600 to-cyan-500">helps you grow.</span>
-              </h1>
-              
-              <p className="text-lg md:text-xl text-slate-500 font-medium mb-12">
-                Search 15,000+ verified products, comparisons, and workflows. Stop guessing and start building.
-              </p>
-
-              {/* Spotlight Search */}
-              <div className="relative group w-full max-w-[650px] mb-8">
-                <div className="absolute -inset-1.5 bg-gradient-to-r from-indigo-500 to-cyan-500 rounded-[20px] blur opacity-20 group-hover:opacity-40 transition duration-500"></div>
-                <div className="relative flex items-center w-full h-16 bg-white border border-slate-200 rounded-[16px] shadow-lg focus-within:border-indigo-500 focus-within:ring-4 focus-within:ring-indigo-50 transition-all overflow-hidden">
-                  <Search className="absolute left-5 w-6 h-6 text-slate-400 group-focus-within:text-indigo-600 transition-colors" />
-                  <input 
-                    type="text" 
-                    placeholder="Search software..."
-                    className="w-full h-full pl-14 pr-24 bg-transparent outline-none text-lg text-slate-900 placeholder:text-slate-400 font-medium"
-                  />
-                  <div className="absolute right-4 flex items-center gap-1.5 px-3 py-1.5 rounded-[12px] bg-slate-100 border border-slate-200 text-slate-500 text-xs font-bold tracking-widest">
-                    Ctrl K
-                  </div>
-                </div>
-              </div>
-
-              {/* Trending Searches */}
-              <div className="flex flex-col gap-3">
-                <span className="text-xs font-bold text-slate-400 uppercase tracking-wider">🔥 Trending Searches</span>
-                <div className="flex flex-wrap items-center justify-center lg:justify-start gap-2">
-                  {['ChatGPT', 'Claude', 'Cursor', 'Lovable', 'Figma', 'n8n', 'Zapier', 'Notion'].map(tag => (
-                    <span key={tag} className="px-3 py-1.5 rounded-[12px] bg-slate-100 text-slate-600 text-sm font-bold hover:bg-indigo-50 hover:text-indigo-700 cursor-pointer transition-colors border border-slate-200">
-                      {tag}
-                    </span>
-                  ))}
-                </div>
-              </div>
-
-            </div>
-
-            {/* Right Column: Floating Dashboard Preview */}
-            <div className="hidden lg:block relative h-[600px] w-full perspective-[2000px]">
-              <div className="absolute inset-0 flex items-center justify-center transform-gpu rotate-y-[-10deg] rotate-x-[5deg] hover:rotate-y-0 hover:rotate-x-0 transition-transform duration-700 ease-out">
-                
-                {/* Main Floating Card */}
-                <div className="relative w-[450px] bg-white/90 backdrop-blur-xl rounded-[24px] border border-slate-200/50 shadow-2xl overflow-hidden p-8 z-20 translate-x-12 translate-y-8">
-                  <div className="flex items-center gap-6 mb-8">
-                    <div className="w-20 h-20 bg-indigo-50 rounded-[20px] flex items-center justify-center border border-indigo-100 shadow-inner">
-                      <Zap className="w-10 h-10 text-indigo-600" />
-                    </div>
-                    <div>
-                      <h3 className="text-3xl font-black text-slate-900 tracking-tight">SuperTool AI</h3>
-                      <div className="flex items-center gap-2 mt-2">
-                        <div className="flex gap-1 text-amber-400">
-                          <Star className="w-4 h-4 fill-current" />
-                          <Star className="w-4 h-4 fill-current" />
-                          <Star className="w-4 h-4 fill-current" />
-                          <Star className="w-4 h-4 fill-current" />
-                          <Star className="w-4 h-4 fill-current" />
-                        </div>
-                        <span className="text-sm font-bold text-slate-500">5.0 (420 reviews)</span>
-                      </div>
-                    </div>
-                  </div>
-                  
-                  <div className="space-y-3 mb-8">
-                    <div className="w-full h-12 bg-slate-100 rounded-[14px] flex items-center px-4 font-bold text-slate-600">Overview</div>
-                    <div className="w-full h-12 bg-indigo-50 rounded-[14px] flex items-center px-4 font-bold text-indigo-700 border border-indigo-100 relative">
-                      Pricing & Plans
-                      <div className="absolute right-4 w-2 h-2 bg-indigo-500 rounded-full"></div>
-                    </div>
-                    <div className="w-full h-12 bg-slate-100 rounded-[14px] flex items-center px-4 font-bold text-slate-600">Alternatives</div>
-                  </div>
-
-                  <button className="w-full h-14 bg-indigo-600 text-white rounded-[16px] font-bold text-lg shadow-md hover:bg-indigo-700 transition-colors">
-                    Get Started Now
-                  </button>
-                </div>
-
-                {/* Secondary Floating Card (Behind) */}
-                <div className="absolute w-[350px] bg-white/60 backdrop-blur-md rounded-[20px] border border-slate-200 shadow-xl p-6 z-10 -translate-x-16 -translate-y-24 opacity-80">
-                  <div className="flex justify-between items-center mb-4">
-                    <span className="font-bold text-slate-900">Traffic Growth</span>
-                    <span className="text-emerald-500 font-bold text-sm">+24%</span>
-                  </div>
-                  <div className="h-24 flex items-end gap-2">
-                    {[40, 70, 45, 90, 65, 100, 80].map((h, i) => (
-                      <div key={i} className="flex-1 bg-indigo-100 rounded-t-md" style={{ height: `${h}%` }}>
-                        {i === 5 && <div className="w-full h-full bg-indigo-500 rounded-t-md"></div>}
-                      </div>
-                    ))}
-                  </div>
-                </div>
-
+          {/* Minimal Spotlight Search */}
+          <div className="relative group w-full max-w-[600px] mx-auto mb-8">
+            <div className="relative flex items-center w-full h-16 bg-white border border-slate-200 rounded-[16px] shadow-sm focus-within:shadow-md focus-within:border-indigo-400 transition-all overflow-hidden">
+              <Search className="absolute left-5 w-6 h-6 text-slate-400 group-focus-within:text-indigo-600 transition-colors" />
+              <input 
+                type="text" 
+                placeholder="Search software..."
+                className="w-full h-full pl-14 pr-24 bg-transparent outline-none text-lg text-slate-900 placeholder:text-slate-400 font-medium"
+              />
+              <div className="absolute right-4 flex items-center gap-1.5 px-3 py-1.5 rounded-[12px] bg-slate-50 border border-slate-100 text-slate-400 text-xs font-bold tracking-widest">
+                Ctrl K
               </div>
             </div>
-
           </div>
+
+          {/* Popular Tags */}
+          <div className="flex flex-wrap items-center justify-center gap-3 mb-12">
+            <span className="text-sm font-bold text-slate-400">Popular:</span>
+            {['ChatGPT', 'Claude', 'Cursor', 'Notion', 'Zapier'].map(tag => (
+              <span key={tag} className="text-sm font-bold text-slate-600 hover:text-indigo-600 cursor-pointer transition-colors">
+                {tag}
+              </span>
+            ))}
+          </div>
+
+          {/* Trust Social Proof */}
+          <div className="flex items-center justify-center gap-2">
+            <div className="flex gap-1 text-indigo-500">
+              {[1, 2, 3, 4, 5].map((star) => (
+                <Star key={star} className="w-5 h-5 fill-current" />
+              ))}
+            </div>
+            <span className="text-sm font-bold text-slate-500">Trusted by 10,000+ professionals</span>
+          </div>
+
         </div>
       </section>
 
