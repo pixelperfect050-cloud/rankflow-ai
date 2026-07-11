@@ -2,6 +2,7 @@ import type { Metadata, Viewport } from "next"
 import { Toaster } from "sonner"
 import { Header } from "@/components/layout/header"
 import { Footer } from "@/components/layout/footer"
+import { ScrollToTop } from "@/components/public/scroll-to-top"
 import { AnalyticsProvider } from "@/components/public/analytics-provider"
 import localFont from 'next/font/local'
 import "./globals.css"
@@ -64,6 +65,7 @@ export default function RootLayout({
         <Header />
         {children}
         <Footer />
+        <ScrollToTop />
         <Toaster richColors position="top-center" />
         <AnalyticsProvider />
       </body>

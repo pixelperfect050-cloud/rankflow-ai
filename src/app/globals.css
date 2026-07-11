@@ -96,11 +96,15 @@ a:hover{color:var(--color-primary-hover)}
 @keyframes glow{0%,100%{box-shadow:0 0 20px -4px rgba(99,102,241,0.3)}50%{box-shadow:0 0 30px -4px rgba(99,102,241,0.5)}}
 @keyframes gradientShift{0%{background-position:0% 50%}50%{background-position:100% 50%}100%{background-position:0% 50%}}
 @keyframes borderGlow{0%,100%{border-color:rgba(99,102,241,0.2)}50%{border-color:rgba(99,102,241,0.5)}}
+@keyframes slideDown{from{opacity:0;transform:translateY(-8px)}to{opacity:1;transform:translateY(0)}}
+@keyframes fadeScale{from{opacity:0;transform:scale(0.8)}to{opacity:1;transform:scale(1)}}
 
-.animate-fade-in{animation:fadeIn 0.5s ease-out}
-.animate-fade-in-up{animation:fadeInUp 0.6s ease-out}
-.animate-scale-in{animation:scaleIn 0.5s ease-out}
-.animate-slide-in-right{animation:slideInRight 0.5s ease-out}
+.animate-fade-in{animation:fadeIn 0.5s ease-out both}
+.animate-fade-in-up{animation:fadeInUp 0.6s ease-out both}
+.animate-fade-in-down{animation:fadeInDown 0.4s ease-out both}
+.animate-scale-in{animation:scaleIn 0.5s ease-out both}
+.animate-slide-in-right{animation:slideInRight 0.5s ease-out both}
+.animate-slide-down{animation:slideDown 0.3s ease-out both}
 .animate-shimmer{animation:shimmer 2s linear infinite;background:linear-gradient(90deg,var(--color-surface) 25%,var(--color-border) 50%,var(--color-surface) 75%);background-size:200% 100%}
 .animate-float{animation:float 4s ease-in-out infinite}
 .animate-glow{animation:glow 3s ease-in-out infinite}

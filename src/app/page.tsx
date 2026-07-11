@@ -1,6 +1,7 @@
 import Link from 'next/link'
 import { Search, ArrowRight, Zap, Bot, PenTool, BarChart3, Mail, Layers, Star, Sparkles, TrendingUp, Shield, Globe } from 'lucide-react'
 import { ProductCard } from '@/components/public/product-card'
+import { HeroSearchTrigger } from '@/components/public/hero-search-trigger'
 import { ProductRepository } from '@/features/products/repository/product.repository'
 import { Product } from '@/types'
 
@@ -69,17 +70,7 @@ export default async function HomePage() {
 
           {/* Search */}
           <div className="max-w-[600px] mx-auto mb-8 animate-fade-in-up" style={{ animationDelay: '0.3s' }}>
-            <div className="flex items-center h-16 bg-white/10 backdrop-blur-xl border border-white/10 rounded-2xl shadow-2xl px-5 gap-4 focus-within:border-indigo-400/50 focus-within:bg-white/15 focus-within:shadow-[0_0_30px_-4px_rgba(99,102,241,0.3)] transition-all duration-300">
-              <Search className="w-5 h-5 text-slate-400 shrink-0" />
-              <input 
-                type="text" 
-                placeholder="Search software, tools, categories..."
-                className="flex-1 h-full bg-transparent outline-none text-base text-white placeholder:text-slate-500 font-medium"
-              />
-              <kbd className="hidden sm:inline-flex items-center px-3 py-1.5 rounded-lg bg-white/10 border border-white/10 text-slate-400 text-xs font-semibold tracking-widest">
-                ⌘K
-              </kbd>
-            </div>
+            <HeroSearchTrigger />
           </div>
 
           {/* Popular Tags */}

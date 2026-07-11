@@ -15,6 +15,11 @@ export function Header() {
   const [scrolled, setScrolled] = useState(false)
   const isAdmin = pathname?.startsWith('/admin')
 
+  // Pages that have a dark hero section
+  const hasDarkHero = ['/', '/blog', '/compare'].includes(pathname || '') ||
+    pathname?.startsWith('/product/') ||
+    pathname?.startsWith('/blog/')
+
   useEffect(() => {
     const handleKeyDown = (e: KeyboardEvent) => {
       if (e.key === 'k' && (e.metaKey || e.ctrlKey)) {
@@ -28,9 +33,14 @@ export function Header() {
 
   useEffect(() => {
     const handleScroll = () => setScrolled(window.scrollY > 20)
-    window.addEventListener('scroll', handleScroll)
+    window.addEventListener('scroll', handleScroll, { passive: true })
     return () => window.removeEventListener('scroll', handleScroll)
   }, [])
+
+  // Close mobile menu on route change
+  useEffect(() => {
+    setIsMobileMenuOpen(false)
+  }, [pathname])
 
   if (isAdmin) {
     return (
@@ -53,6 +63,9 @@ export function Header() {
     )
   }
 
+  // Determine text colors based on scroll state and hero type
+  const showLightText = hasDarkHero && !scrolled
+
   return (
     <header 
       className={cn(
@@ -66,14 +79,14 @@ export function Header() {
         <div className="flex h-18 items-center justify-between">
           
           <div className="flex items-center gap-10">
-            <Link href="/" className="flex items-center gap-2.5 text-slate-900 font-extrabold text-xl tracking-tight group">
+            <Link href="/" className="flex items-center gap-2.5 font-extrabold text-xl tracking-tight group">
               <div className="w-8 h-8 rounded-xl bg-gradient-to-br from-indigo-500 to-indigo-600 flex items-center justify-center shadow-md shadow-indigo-500/20 group-hover:shadow-indigo-500/40 transition-shadow">
                 <Sparkles className="h-4.5 w-4.5 text-white" />
               </div>
-              <span className={cn("transition-colors", scrolled ? "text-slate-900" : "text-slate-900")}>{SITE_CONFIG.name}</span>
+              <span className={cn("transition-colors duration-300", showLightText ? "text-white" : "text-slate-900")}>{SITE_CONFIG.name}</span>
             </Link>
 
-            <nav className="hidden md:flex items-center gap-1">
+            <nav className="hidden md:flex items-center gap-1" aria-label="Main navigation">
               {NAV_ITEMS.map((item) => (
                 <Link
                   key={item.href}
@@ -81,8 +94,12 @@ export function Header() {
                   className={cn(
                     "px-3.5 py-2 rounded-xl text-[14px] font-semibold transition-all duration-200",
                     pathname === item.href || pathname?.startsWith(`${item.href}/`)
-                      ? "text-indigo-600 bg-indigo-50"
-                      : "text-slate-600 hover:text-slate-900 hover:bg-slate-50"
+                      ? showLightText
+                        ? "text-white bg-white/15"
+                        : "text-indigo-600 bg-indigo-50"
+                      : showLightText
+                        ? "text-slate-300 hover:text-white hover:bg-white/10"
+                        : "text-slate-600 hover:text-slate-900 hover:bg-slate-50"
                   )}
                 >
                   {item.label}
@@ -94,13 +111,24 @@ export function Header() {
           <div className="hidden md:flex items-center gap-2">
             <button 
               onClick={() => setIsSearchOpen(true)}
-              className="text-slate-500 hover:text-slate-900 transition-colors p-2.5 rounded-xl hover:bg-slate-50"
+              aria-label="Search (Ctrl+K)"
+              className={cn(
+                "transition-colors p-2.5 rounded-xl",
+                showLightText
+                  ? "text-slate-300 hover:text-white hover:bg-white/10"
+                  : "text-slate-500 hover:text-slate-900 hover:bg-slate-50"
+              )}
             >
               <Search className="h-5 w-5" />
             </button>
             <Link 
               href="/submit-tool" 
-              className="px-4 py-2.5 text-[14px] font-semibold text-slate-600 hover:text-slate-900 hover:bg-slate-50 rounded-xl transition-all"
+              className={cn(
+                "px-4 py-2.5 text-[14px] font-semibold rounded-xl transition-all",
+                showLightText
+                  ? "text-slate-300 hover:text-white hover:bg-white/10"
+                  : "text-slate-600 hover:text-slate-900 hover:bg-slate-50"
+              )}
             >
               Submit Tool
             </Link>
@@ -112,18 +140,40 @@ export function Header() {
             </Link>
           </div>
 
-          <button
-            className="md:hidden p-2 text-slate-600 hover:text-slate-900 rounded-xl hover:bg-slate-50 transition-colors"
-            onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-          >
-            {isMobileMenuOpen ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}
-          </button>
+          {/* Mobile: search + menu buttons */}
+          <div className="flex md:hidden items-center gap-1">
+            <button
+              onClick={() => setIsSearchOpen(true)}
+              aria-label="Search"
+              className={cn(
+                "p-2 rounded-xl transition-colors",
+                showLightText
+                  ? "text-slate-300 hover:text-white hover:bg-white/10"
+                  : "text-slate-600 hover:text-slate-900 hover:bg-slate-50"
+              )}
+            >
+              <Search className="h-5 w-5" />
+            </button>
+            <button
+              aria-label={isMobileMenuOpen ? "Close menu" : "Open menu"}
+              className={cn(
+                "p-2 rounded-xl transition-colors",
+                showLightText
+                  ? "text-slate-300 hover:text-white hover:bg-white/10"
+                  : "text-slate-600 hover:text-slate-900 hover:bg-slate-50"
+              )}
+              onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+            >
+              {isMobileMenuOpen ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}
+            </button>
+          </div>
         </div>
       </div>
 
+      {/* Mobile menu with slide-down animation */}
       {isMobileMenuOpen && (
-        <div className="md:hidden border-t border-slate-100 bg-white/95 backdrop-blur-2xl px-4 py-6 shadow-2xl absolute w-full left-0 top-[72px]">
-          <nav className="flex flex-col gap-1">
+        <div className="md:hidden border-t border-slate-100 bg-white/95 backdrop-blur-2xl px-4 py-6 shadow-2xl absolute w-full left-0 top-[72px] animate-slide-down">
+          <nav className="flex flex-col gap-1" aria-label="Mobile navigation">
             {NAV_ITEMS.map((item) => (
               <Link
                 key={item.href}
