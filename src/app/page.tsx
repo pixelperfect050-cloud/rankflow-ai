@@ -49,45 +49,45 @@ export default async function HomePage() {
           </p>
 
           {/* Minimal Spotlight Search */}
-          <div className="relative group w-full max-w-[600px] mx-auto mb-8">
-            <div className="relative flex items-center w-full h-16 bg-white border border-slate-200 rounded-[16px] shadow-sm focus-within:shadow-md focus-within:border-indigo-400 transition-all overflow-hidden">
-              <Search className="absolute left-5 w-6 h-6 text-slate-400 group-focus-within:text-indigo-600 transition-colors" />
+          <div className="relative group w-full max-w-[650px] mx-auto mb-10">
+            <div className="relative flex items-center w-full h-[72px] bg-white border-2 border-slate-200 rounded-[24px] shadow-sm focus-within:shadow-lg focus-within:border-indigo-500 transition-all overflow-hidden">
+              <Search className="absolute left-6 w-7 h-7 text-slate-400 group-focus-within:text-indigo-600 transition-colors" />
               <input 
                 type="text" 
                 placeholder="Search software..."
-                className="w-full h-full pl-14 pr-24 bg-transparent outline-none text-lg text-slate-900 placeholder:text-slate-400 font-medium"
+                className="w-full h-full pl-16 pr-28 bg-transparent outline-none text-xl text-slate-900 placeholder:text-slate-400 font-medium"
               />
-              <div className="absolute right-4 flex items-center gap-1.5 px-3 py-1.5 rounded-[12px] bg-slate-50 border border-slate-100 text-slate-400 text-xs font-bold tracking-widest">
+              <div className="absolute right-4 flex items-center gap-1.5 px-3 py-2 rounded-[14px] bg-slate-100 border border-slate-200 text-slate-500 text-sm font-bold tracking-widest">
                 Ctrl K
               </div>
             </div>
           </div>
 
           {/* Popular Tags */}
-          <div className="flex flex-wrap items-center justify-center gap-3 mb-12">
-            <span className="text-sm font-bold text-slate-400">Popular:</span>
+          <div className="flex flex-wrap items-center justify-center gap-3 mb-14">
+            <span className="text-sm font-bold text-slate-400 uppercase tracking-widest mr-2">Popular</span>
             {['ChatGPT', 'Claude', 'Cursor', 'Notion', 'Zapier'].map(tag => (
-              <span key={tag} className="text-sm font-bold text-slate-600 hover:text-indigo-600 cursor-pointer transition-colors">
+              <span key={tag} className="px-4 py-2 bg-slate-100 rounded-[14px] text-sm font-bold text-slate-700 hover:bg-indigo-50 hover:text-indigo-600 cursor-pointer transition-colors border border-slate-200/60">
                 {tag}
               </span>
             ))}
           </div>
 
           {/* Trust Social Proof */}
-          <div className="flex items-center justify-center gap-2">
-            <div className="flex gap-1 text-indigo-500">
+          <div className="flex items-center justify-center gap-3">
+            <div className="flex gap-1 text-amber-400">
               {[1, 2, 3, 4, 5].map((star) => (
-                <Star key={star} className="w-5 h-5 fill-current" />
+                <Star key={star} className="w-6 h-6 fill-current" />
               ))}
             </div>
-            <span className="text-sm font-bold text-slate-500">Trusted by 10,000+ professionals</span>
+            <span className="text-base font-bold text-slate-600">Trusted by 10,000+ professionals</span>
           </div>
 
         </div>
       </section>
 
       {/* 2. STATS SECTION (Cards) */}
-      <section className="bg-slate-50 border-b border-slate-200 py-16">
+      <section className="bg-slate-50 border-b border-slate-200 py-20 relative z-20">
         <div className="max-w-7xl mx-auto px-4 sm:px-6">
           <div className="grid grid-cols-2 md:grid-cols-4 gap-6">
             {[
@@ -96,9 +96,9 @@ export default async function HomePage() {
               { value: '800+', label: 'Comparisons' },
               { value: '300+', label: 'Categories' },
             ].map((stat, i) => (
-              <div key={i} className="bg-white rounded-[20px] p-8 text-center border border-slate-200 shadow-sm hover:shadow-md transition-shadow">
-                <div className="text-4xl font-black text-slate-900 tracking-tight mb-2">{stat.value}</div>
-                <div className="text-sm font-bold text-slate-500 uppercase tracking-widest">{stat.label}</div>
+              <div key={i} className="bg-white rounded-[24px] p-8 text-center border-2 border-slate-100 shadow-sm hover:shadow-md hover:border-indigo-100 transition-all">
+                <div className="text-4xl md:text-5xl font-black text-slate-900 tracking-tight mb-2">{stat.value}</div>
+                <div className="text-sm md:text-base font-bold text-slate-500 uppercase tracking-widest">{stat.label}</div>
               </div>
             ))}
           </div>
@@ -106,7 +106,7 @@ export default async function HomePage() {
       </section>
 
       {/* 3. FEATURED PICKS */}
-      <section className="py-24 max-w-7xl mx-auto px-4 sm:px-6">
+      <section className="pt-32 pb-24 max-w-7xl mx-auto px-4 sm:px-6">
         <div className="flex items-end justify-between mb-12">
           <div>
             <h2 className="text-3xl md:text-4xl font-black text-slate-900 tracking-tight mb-2">Featured Picks</h2>

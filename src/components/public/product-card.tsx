@@ -49,20 +49,20 @@ export function ProductCard({ product }: ProductCardProps) {
         </div>
 
         {/* Badges */}
-        <div className="flex flex-wrap gap-2 mb-6">
-          <span className="inline-flex items-center px-2.5 py-1 rounded-[12px] bg-indigo-50 text-indigo-700 text-xs font-bold tracking-wide">
+        <div className="flex flex-wrap gap-2 mb-6 mt-1">
+          <span className="inline-flex items-center px-3 py-1 rounded-[12px] bg-indigo-50 text-indigo-700 text-[11px] font-bold tracking-widest uppercase">
             {pricingType}
           </span>
-          <span className="inline-flex items-center px-2.5 py-1 rounded-[12px] bg-slate-50 text-slate-600 text-xs font-bold tracking-wide border border-slate-100">
+          <span className="inline-flex items-center px-3 py-1 rounded-[12px] bg-slate-100 text-slate-600 text-[11px] font-bold tracking-widest uppercase border border-slate-200/50">
             {category}
           </span>
         </div>
 
         {/* Action Button */}
-        <div className="mt-auto pt-2">
-          <div className="flex items-center justify-center gap-2 w-full h-11 bg-slate-50 text-slate-700 font-bold text-sm rounded-[14px] group-hover:bg-indigo-600 group-hover:text-white transition-colors">
-            <span>Open</span>
-            <ArrowRight className="w-4 h-4" />
+        <div className="mt-auto pt-4">
+          <div className="flex items-center justify-center gap-2 w-full h-12 bg-slate-50 text-slate-700 font-bold text-sm rounded-[14px] group-hover:bg-indigo-600 group-hover:text-white transition-all duration-300 shadow-sm group-hover:shadow-indigo-500/25 border border-slate-200 group-hover:border-indigo-600">
+            <span>View Product</span>
+            <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
           </div>
         </div>
 
