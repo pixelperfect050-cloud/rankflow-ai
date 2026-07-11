@@ -88,7 +88,7 @@ export function Footer() {
             © {new Date().getFullYear()} {SITE_CONFIG.name}. All rights reserved.
           </p>
           <p className="text-xs text-slate-400 flex items-center gap-1">
-            Built with <span className="text-indigo-600">❤</span> for the future of work.
+            Powered by <span className="font-bold text-indigo-600">Funkariya</span>
           </p>
         </div>
       </div>
