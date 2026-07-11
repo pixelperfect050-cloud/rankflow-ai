@@ -15,7 +15,6 @@ export function Header() {
   const [scrolled, setScrolled] = useState(false)
   const isAdmin = pathname?.startsWith('/admin')
 
-  // Handle Ctrl+K
   useEffect(() => {
     const handleKeyDown = (e: KeyboardEvent) => {
       if (e.key === 'k' && (e.metaKey || e.ctrlKey)) {
@@ -27,11 +26,8 @@ export function Header() {
     return () => window.removeEventListener('keydown', handleKeyDown)
   }, [])
 
-  // Handle scroll for glass effect
   useEffect(() => {
-    const handleScroll = () => {
-      setScrolled(window.scrollY > 20)
-    }
+    const handleScroll = () => setScrolled(window.scrollY > 20)
     window.addEventListener('scroll', handleScroll)
     return () => window.removeEventListener('scroll', handleScroll)
   }, [])
@@ -40,16 +36,16 @@ export function Header() {
     return (
       <header className="sticky top-0 z-40 flex h-16 w-full items-center justify-between border-b border-slate-200 bg-white px-4 sm:px-6">
         <div className="flex items-center gap-4">
-          <Link href="/" className="flex items-center gap-2 text-indigo-600 font-bold text-xl tracking-tight">
+          <Link href="/" className="flex items-center gap-2 text-indigo-600 font-extrabold text-xl tracking-tight">
             <Sparkles className="h-6 w-6" />
             <span className="hidden sm:inline-block">RankFlow Admin</span>
           </Link>
         </div>
         <div className="flex items-center gap-4">
-          <Link href="/" className="text-sm font-medium text-slate-500 hover:text-slate-900 transition-colors">
+          <Link href="/" className="text-sm font-semibold text-slate-500 hover:text-slate-900 transition-colors">
             View Site
           </Link>
-          <div className="h-8 w-8 rounded-full bg-indigo-50 flex items-center justify-center text-indigo-600 border border-indigo-100">
+          <div className="h-8 w-8 rounded-full bg-gradient-to-br from-indigo-500 to-indigo-600 flex items-center justify-center text-white border border-indigo-100 shadow-sm">
             <User className="h-4 w-4" />
           </div>
         </div>
@@ -60,31 +56,33 @@ export function Header() {
   return (
     <header 
       className={cn(
-        "sticky top-0 z-50 w-full transition-all duration-300 border-b",
+        "fixed top-0 left-0 right-0 z-50 w-full transition-all duration-300",
         scrolled 
-          ? "bg-white/80 backdrop-blur-lg border-slate-200 shadow-sm" 
-          : "bg-white border-transparent"
+          ? "bg-white/70 backdrop-blur-2xl border-b border-slate-200/50 shadow-[0_1px_3px_0_rgba(0,0,0,0.04)]" 
+          : "bg-transparent border-transparent"
       )}
     >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex h-20 items-center justify-between">
+        <div className="flex h-18 items-center justify-between">
           
           <div className="flex items-center gap-10">
-            <Link href="/" className="flex items-center gap-2 text-slate-900 font-extrabold text-2xl tracking-tight">
-              <Sparkles className="h-6 w-6 text-indigo-600" />
-              <span>{SITE_CONFIG.name}</span>
+            <Link href="/" className="flex items-center gap-2.5 text-slate-900 font-extrabold text-xl tracking-tight group">
+              <div className="w-8 h-8 rounded-xl bg-gradient-to-br from-indigo-500 to-indigo-600 flex items-center justify-center shadow-md shadow-indigo-500/20 group-hover:shadow-indigo-500/40 transition-shadow">
+                <Sparkles className="h-4.5 w-4.5 text-white" />
+              </div>
+              <span className={cn("transition-colors", scrolled ? "text-slate-900" : "text-slate-900")}>{SITE_CONFIG.name}</span>
             </Link>
 
-            <nav className="hidden md:flex items-center gap-8">
+            <nav className="hidden md:flex items-center gap-1">
               {NAV_ITEMS.map((item) => (
                 <Link
                   key={item.href}
                   href={item.href}
                   className={cn(
-                    "text-[15px] font-semibold transition-colors hover:text-indigo-600",
+                    "px-3.5 py-2 rounded-xl text-[14px] font-semibold transition-all duration-200",
                     pathname === item.href || pathname?.startsWith(`${item.href}/`)
-                      ? "text-indigo-600"
-                      : "text-slate-600"
+                      ? "text-indigo-600 bg-indigo-50"
+                      : "text-slate-600 hover:text-slate-900 hover:bg-slate-50"
                   )}
                 >
                   {item.label}
@@ -93,30 +91,29 @@ export function Header() {
             </nav>
           </div>
 
-          <div className="hidden md:flex items-center gap-6">
+          <div className="hidden md:flex items-center gap-2">
             <button 
               onClick={() => setIsSearchOpen(true)}
-              className="text-slate-500 hover:text-indigo-600 transition-colors p-2 rounded-full hover:bg-slate-50"
+              className="text-slate-500 hover:text-slate-900 transition-colors p-2.5 rounded-xl hover:bg-slate-50"
             >
               <Search className="h-5 w-5" />
             </button>
             <Link 
               href="/submit-tool" 
-              className="text-[15px] font-semibold text-slate-600 hover:text-indigo-600 transition-colors"
+              className="px-4 py-2.5 text-[14px] font-semibold text-slate-600 hover:text-slate-900 hover:bg-slate-50 rounded-xl transition-all"
             >
               Submit Tool
             </Link>
             <Link 
               href="/admin/login" 
-              className="inline-flex h-11 items-center justify-center rounded-[14px] bg-indigo-600 px-6 py-2 text-[15px] font-bold text-white shadow-sm transition-all hover:bg-indigo-700 hover:shadow-md focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-indigo-600"
+              className="inline-flex h-10 items-center justify-center rounded-xl bg-gradient-to-r from-indigo-600 to-indigo-500 px-5 py-2 text-[14px] font-bold text-white shadow-md shadow-indigo-500/25 transition-all hover:shadow-lg hover:shadow-indigo-500/30 hover:from-indigo-700 hover:to-indigo-600"
             >
               Login
             </Link>
           </div>
 
-          {/* Mobile menu button */}
           <button
-            className="md:hidden p-2 text-slate-600 hover:text-indigo-600 rounded-lg hover:bg-slate-50 transition-colors"
+            className="md:hidden p-2 text-slate-600 hover:text-slate-900 rounded-xl hover:bg-slate-50 transition-colors"
             onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
           >
             {isMobileMenuOpen ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}
@@ -124,37 +121,36 @@ export function Header() {
         </div>
       </div>
 
-      {/* Mobile menu */}
       {isMobileMenuOpen && (
-        <div className="md:hidden border-t border-slate-100 bg-white px-4 py-6 shadow-xl absolute w-full left-0 top-20">
-          <nav className="flex flex-col gap-4">
+        <div className="md:hidden border-t border-slate-100 bg-white/95 backdrop-blur-2xl px-4 py-6 shadow-2xl absolute w-full left-0 top-[72px]">
+          <nav className="flex flex-col gap-1">
             {NAV_ITEMS.map((item) => (
               <Link
                 key={item.href}
                 href={item.href}
                 onClick={() => setIsMobileMenuOpen(false)}
                 className={cn(
-                  "text-lg font-bold transition-colors hover:text-indigo-600",
+                  "px-4 py-3 rounded-xl text-base font-bold transition-all",
                   pathname === item.href
-                    ? "text-indigo-600"
-                    : "text-slate-600"
+                    ? "text-indigo-600 bg-indigo-50"
+                    : "text-slate-600 hover:text-slate-900 hover:bg-slate-50"
                 )}
               >
                 {item.label}
               </Link>
             ))}
-            <hr className="border-slate-100 my-4" />
+            <div className="h-px bg-slate-100 my-3" />
             <Link 
               href="/submit-tool" 
               onClick={() => setIsMobileMenuOpen(false)}
-              className="text-lg font-bold text-slate-600 hover:text-indigo-600 transition-colors"
+              className="px-4 py-3 rounded-xl text-base font-bold text-slate-600 hover:text-slate-900 hover:bg-slate-50 transition-all"
             >
               Submit Tool
             </Link>
             <Link 
               href="/admin/login" 
               onClick={() => setIsMobileMenuOpen(false)}
-              className="inline-flex h-12 w-full items-center justify-center rounded-[14px] bg-indigo-600 px-4 py-2 text-lg font-bold text-white shadow-sm transition-colors hover:bg-indigo-700"
+              className="mt-2 inline-flex h-12 w-full items-center justify-center rounded-xl bg-gradient-to-r from-indigo-600 to-indigo-500 px-4 py-2 text-base font-bold text-white shadow-lg shadow-indigo-500/25 transition-all"
             >
               Login
             </Link>

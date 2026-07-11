@@ -3,15 +3,20 @@ import { Toaster } from "sonner"
 import { Header } from "@/components/layout/header"
 import { Footer } from "@/components/layout/footer"
 import { AnalyticsProvider } from "@/components/public/analytics-provider"
-import { Inter } from 'next/font/google'
+import localFont from 'next/font/local'
 import "./globals.css"
 
-const inter = Inter({ subsets: ['latin'], variable: '--font-sans' })
+const inter = localFont({
+  src: '../../public/fonts/Inter-Variable.woff2',
+  variable: '--font-sans',
+  display: 'swap',
+  fallback: ['system-ui', '-apple-system', 'sans-serif'],
+})
 
 export const viewport: Viewport = {
   themeColor: [
-    { media: "(prefers-color-scheme: light)", color: "white" },
-    { media: "(prefers-color-scheme: dark)", color: "black" },
+    { media: "(prefers-color-scheme: light)", color: "#fafbfc" },
+    { media: "(prefers-color-scheme: dark)", color: "#0f172a" },
   ],
 }
 
@@ -54,8 +59,8 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" className={`scroll-smooth ${inter.variable}`} suppressHydrationWarning>
-      <body className="min-h-screen bg-slate-50 text-slate-900 antialiased font-sans flex flex-col">
+    <html lang="en" className={`${inter.variable}`} suppressHydrationWarning>
+      <body className="min-h-screen bg-[#fafbfc] text-slate-900 antialiased font-sans flex flex-col">
         <Header />
         {children}
         <Footer />

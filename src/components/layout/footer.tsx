@@ -4,91 +4,91 @@ import { SITE_CONFIG } from '@/lib/constants'
 
 export function Footer() {
   return (
-    <footer className="bg-white border-t border-slate-200">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 py-16 lg:py-24">
+    <footer className="bg-slate-900 text-white">
+      {/* Top wave decoration */}
+      <div className="h-px bg-gradient-to-r from-transparent via-indigo-500/30 to-transparent" />
+      
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 py-16 lg:py-20">
         <div className="grid grid-cols-2 lg:grid-cols-5 gap-12 lg:gap-8">
           
-          {/* Column 1: Brand */}
+          {/* Brand */}
           <div className="col-span-2 lg:col-span-2">
-            <Link href="/" className="flex items-center gap-2 text-slate-900 font-extrabold text-xl tracking-tight mb-4">
-              <Sparkles className="h-5 w-5 text-indigo-600" />
-              <span>{SITE_CONFIG.name}</span>
+            <Link href="/" className="flex items-center gap-2.5 mb-5">
+              <div className="w-8 h-8 rounded-xl bg-gradient-to-br from-indigo-500 to-indigo-600 flex items-center justify-center shadow-lg shadow-indigo-500/20">
+                <Sparkles className="h-4 w-4 text-white" />
+              </div>
+              <span className="font-extrabold text-xl tracking-tight">{SITE_CONFIG.name}</span>
             </Link>
-            <p className="text-sm text-slate-500 leading-relaxed mb-6 pr-4 max-w-sm">
+            <p className="text-sm text-slate-400 leading-relaxed mb-6 pr-4 max-w-sm">
               The ultimate directory for finding, comparing, and mastering software tools to scale your business.
             </p>
-            <div className="flex gap-4 text-sm font-medium text-slate-400">
-              <a href="#" className="hover:text-indigo-600 transition-colors">Twitter</a>
-              <a href="#" className="hover:text-indigo-600 transition-colors">LinkedIn</a>
-              <a href="#" className="hover:text-indigo-600 transition-colors">GitHub</a>
+            <div className="flex gap-3">
+              {['Twitter', 'LinkedIn', 'GitHub'].map(social => (
+                <a key={social} href="#" className="w-9 h-9 rounded-xl bg-white/5 border border-white/10 flex items-center justify-center text-slate-400 hover:text-white hover:bg-white/10 hover:border-white/20 transition-all text-xs font-bold">
+                  {social[0]}
+                </a>
+              ))}
             </div>
           </div>
 
-          {/* Column 2: Directory */}
+          {/* Directory */}
           <div>
-            <h3 className="font-bold text-slate-900 text-sm tracking-wider uppercase mb-5">Directory</h3>
-            <ul className="space-y-4">
-              <li>
-                <Link href="/products" className="text-sm text-slate-500 hover:text-indigo-600 transition-colors">All Software</Link>
-              </li>
-              <li>
-                <Link href="/categories" className="text-sm text-slate-500 hover:text-indigo-600 transition-colors">Categories</Link>
-              </li>
-              <li>
-                <Link href="/compare" className="text-sm text-slate-500 hover:text-indigo-600 transition-colors">Comparisons</Link>
-              </li>
-              <li>
-                <Link href="/submit-tool" className="text-sm text-slate-500 hover:text-indigo-600 transition-colors">Submit Tool</Link>
-              </li>
+            <h3 className="font-bold text-white text-sm tracking-wider uppercase mb-5">Directory</h3>
+            <ul className="space-y-3.5">
+              {[
+                { label: 'All Software', href: '/products' },
+                { label: 'Categories', href: '/categories' },
+                { label: 'Comparisons', href: '/compare' },
+                { label: 'Submit Tool', href: '/submit-tool' },
+              ].map(item => (
+                <li key={item.href}>
+                  <Link href={item.href} className="text-sm text-slate-400 hover:text-white transition-colors">{item.label}</Link>
+                </li>
+              ))}
             </ul>
           </div>
 
-          {/* Column 3: Resources */}
+          {/* Resources */}
           <div>
-            <h3 className="font-bold text-slate-900 text-sm tracking-wider uppercase mb-5">Resources</h3>
-            <ul className="space-y-4">
-              <li>
-                <Link href="/blog" className="text-sm text-slate-500 hover:text-indigo-600 transition-colors">Blog & Guides</Link>
-              </li>
-              <li>
-                <Link href="/collections" className="text-sm text-slate-500 hover:text-indigo-600 transition-colors">Collections</Link>
-              </li>
-              <li>
-                <Link href="/newsletter" className="text-sm text-slate-500 hover:text-indigo-600 transition-colors">Newsletter</Link>
-              </li>
-              <li>
-                <Link href="/api-access" className="text-sm text-slate-500 hover:text-indigo-600 transition-colors">API Access</Link>
-              </li>
+            <h3 className="font-bold text-white text-sm tracking-wider uppercase mb-5">Resources</h3>
+            <ul className="space-y-3.5">
+              {[
+                { label: 'Blog & Guides', href: '/blog' },
+                { label: 'Collections', href: '/collections' },
+                { label: 'Newsletter', href: '/newsletter' },
+                { label: 'API Access', href: '/api-access' },
+              ].map(item => (
+                <li key={item.href}>
+                  <Link href={item.href} className="text-sm text-slate-400 hover:text-white transition-colors">{item.label}</Link>
+                </li>
+              ))}
             </ul>
           </div>
 
-          {/* Column 4: Company */}
+          {/* Company */}
           <div>
-            <h3 className="font-bold text-slate-900 text-sm tracking-wider uppercase mb-5">Company</h3>
-            <ul className="space-y-4">
-              <li>
-                <Link href="/about" className="text-sm text-slate-500 hover:text-indigo-600 transition-colors">About Us</Link>
-              </li>
-              <li>
-                <Link href="/contact" className="text-sm text-slate-500 hover:text-indigo-600 transition-colors">Contact</Link>
-              </li>
-              <li>
-                <Link href="/privacy" className="text-sm text-slate-500 hover:text-indigo-600 transition-colors">Privacy Policy</Link>
-              </li>
-              <li>
-                <Link href="/terms" className="text-sm text-slate-500 hover:text-indigo-600 transition-colors">Terms of Service</Link>
-              </li>
+            <h3 className="font-bold text-white text-sm tracking-wider uppercase mb-5">Company</h3>
+            <ul className="space-y-3.5">
+              {[
+                { label: 'About Us', href: '/about' },
+                { label: 'Contact', href: '/contact' },
+                { label: 'Privacy Policy', href: '/privacy' },
+                { label: 'Terms of Service', href: '/terms' },
+              ].map(item => (
+                <li key={item.href}>
+                  <Link href={item.href} className="text-sm text-slate-400 hover:text-white transition-colors">{item.label}</Link>
+                </li>
+              ))}
             </ul>
           </div>
-
         </div>
 
-        <div className="mt-16 pt-8 border-t border-slate-100 flex flex-col md:flex-row items-center justify-between gap-4">
-          <p className="text-xs text-slate-400">
-            © {new Date().getFullYear()} {SITE_CONFIG.name}. All rights reserved.
+        <div className="mt-16 pt-8 border-t border-white/10 flex flex-col md:flex-row items-center justify-between gap-4">
+          <p className="text-xs text-slate-500">
+            &copy; {new Date().getFullYear()} {SITE_CONFIG.name}. All rights reserved.
           </p>
-          <p className="text-xs text-slate-400 flex items-center gap-1">
-            Powered by <span className="font-bold text-indigo-600">Funkariya</span>
+          <p className="text-xs text-slate-500 flex items-center gap-1.5">
+            Powered by <span className="font-bold text-indigo-400">Funkariya</span>
           </p>
         </div>
       </div>

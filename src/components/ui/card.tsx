@@ -3,25 +3,16 @@
 import React from 'react';
 import { cn } from '@/lib/utils';
 
-/* ------------------------------------------------------------------ */
-/*  Types                                                              */
-/* ------------------------------------------------------------------ */
-
 export type CardVariant = 'default' | 'elevated';
 
 export interface CardProps extends React.HTMLAttributes<HTMLDivElement> {
   variant?: CardVariant;
-  /** Disable the hover-lift effect */
   noHover?: boolean;
 }
 
-/* ------------------------------------------------------------------ */
-/*  Card                                                               */
-/* ------------------------------------------------------------------ */
-
 const variantStyles: Record<CardVariant, string> = {
-  default: 'border border-[#e2e8f0] shadow-sm',
-  elevated: 'shadow-md border border-[#e2e8f0]/60',
+  default: 'border border-slate-200/60 shadow-sm',
+  elevated: 'shadow-lg border border-slate-200/40',
 };
 
 export function Card({
@@ -34,10 +25,10 @@ export function Card({
   return (
     <div
       className={cn(
-        'bg-white rounded-[12px] overflow-hidden',
+        'bg-white rounded-2xl overflow-hidden',
         'transition-all duration-300 ease-in-out',
         variantStyles[variant],
-        !noHover && 'hover:-translate-y-0.5 hover:shadow-lg',
+        !noHover && 'hover:-translate-y-0.5 hover:shadow-xl hover:shadow-slate-900/5 hover:border-slate-200',
         className,
       )}
       {...props}
@@ -46,10 +37,6 @@ export function Card({
     </div>
   );
 }
-
-/* ------------------------------------------------------------------ */
-/*  CardHeader                                                         */
-/* ------------------------------------------------------------------ */
 
 export interface CardHeaderProps extends React.HTMLAttributes<HTMLDivElement> {}
 
@@ -64,10 +51,6 @@ export function CardHeader({ className, children, ...props }: CardHeaderProps) {
   );
 }
 
-/* ------------------------------------------------------------------ */
-/*  CardContent                                                        */
-/* ------------------------------------------------------------------ */
-
 export interface CardContentProps extends React.HTMLAttributes<HTMLDivElement> {}
 
 export function CardContent({ className, children, ...props }: CardContentProps) {
@@ -81,10 +64,6 @@ export function CardContent({ className, children, ...props }: CardContentProps)
   );
 }
 
-/* ------------------------------------------------------------------ */
-/*  CardFooter                                                         */
-/* ------------------------------------------------------------------ */
-
 export interface CardFooterProps extends React.HTMLAttributes<HTMLDivElement> {}
 
 export function CardFooter({ className, children, ...props }: CardFooterProps) {
@@ -92,7 +71,7 @@ export function CardFooter({ className, children, ...props }: CardFooterProps) {
     <div
       className={cn(
         'px-6 pb-6 pt-2 flex items-center',
-        'border-t border-[#e2e8f0]',
+        'border-t border-slate-100',
         className,
       )}
       {...props}
