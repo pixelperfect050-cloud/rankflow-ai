@@ -1,5 +1,5 @@
 import Link from 'next/link'
-import { Search, ArrowRight, Zap, Bot, PenTool, BarChart3, Mail, MonitorPlay, Layers, Star, CheckCircle2 } from 'lucide-react'
+import { Search, ArrowRight, Zap, Bot, PenTool, BarChart3, Mail, Layers, Star, Sparkles } from 'lucide-react'
 import { ProductCard } from '@/components/public/product-card'
 import { ProductRepository } from '@/features/products/repository/product.repository'
 import { Product } from '@/types'
@@ -29,158 +29,161 @@ export default async function HomePage() {
   ] as unknown as Product[];
 
   return (
-    <main className="flex-1 w-full bg-slate-50 overflow-hidden">
+    <main className="flex-1 w-full overflow-hidden">
       
-      {/* 1. MINIMAL LINEAR HERO SECTION */}
-      <section className="relative bg-white border-b border-slate-200 pt-32 pb-24 md:pt-40 md:pb-32 overflow-hidden flex flex-col items-center justify-center min-h-[70vh]">
+      {/* ═══════════════════════════════════════════ */}
+      {/* 1. HERO */}
+      {/* ═══════════════════════════════════════════ */}
+      <section className="relative bg-[#FAFAFC] pt-32 pb-28 md:pt-44 md:pb-36 overflow-hidden">
         
-        {/* Soft subtle glow (Not overpowering) */}
-        <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[800px] h-[400px] bg-indigo-500/5 blur-[120px] rounded-full pointer-events-none"></div>
+        {/* Soft ambient glow */}
+        <div className="absolute top-[-200px] left-1/2 -translate-x-1/2 w-[900px] h-[500px] bg-gradient-to-b from-indigo-100/60 to-transparent blur-[80px] rounded-full pointer-events-none"></div>
+        <div className="absolute bottom-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-slate-200 to-transparent"></div>
 
-        <div className="max-w-4xl mx-auto px-4 sm:px-6 relative z-10 text-center w-full">
+        <div className="relative z-10 max-w-3xl mx-auto px-6 text-center">
           
-          <h1 className="text-[56px] md:text-[80px] font-black text-slate-900 tracking-tighter leading-[1.05] mb-8">
-            Discover software <br className="hidden md:block"/>
-            that actually <span className="text-transparent bg-clip-text bg-gradient-to-r from-indigo-600 to-indigo-400">helps you grow.</span>
+          <h1 className="text-5xl md:text-7xl font-black text-slate-900 tracking-tight leading-[1.1] mb-6">
+            Discover software<br className="hidden sm:block"/> that actually{' '}
+            <span className="text-transparent bg-clip-text bg-gradient-to-r from-indigo-600 to-cyan-500">helps you grow.</span>
           </h1>
           
-          <p className="text-xl md:text-2xl text-slate-500 font-medium mb-12 max-w-2xl mx-auto">
+          <p className="text-lg md:text-xl text-slate-500 font-medium mb-12 max-w-xl mx-auto leading-relaxed">
             Search 15,000+ verified products, comparisons and guides.
           </p>
 
-          {/* Minimal Spotlight Search */}
-          <div className="relative group w-full max-w-[650px] mx-auto mb-10">
-            <div className="flex items-center w-full h-[72px] bg-white border-2 border-slate-200 rounded-[24px] shadow-sm focus-within:shadow-lg focus-within:border-indigo-500 transition-all overflow-hidden px-4">
-              <Search className="w-7 h-7 text-slate-400 group-focus-within:text-indigo-600 transition-colors shrink-0 mx-2" />
+          {/* Search */}
+          <div className="max-w-[560px] mx-auto mb-8">
+            <div className="flex items-center h-14 bg-white border border-slate-200 rounded-2xl shadow-sm px-4 gap-3 focus-within:border-indigo-400 focus-within:shadow-md transition-all">
+              <Search className="w-5 h-5 text-slate-400 shrink-0" />
               <input 
                 type="text" 
                 placeholder="Search software..."
-                className="flex-1 h-full bg-transparent outline-none text-xl text-slate-900 placeholder:text-slate-400 font-medium px-2"
+                className="flex-1 h-full bg-transparent outline-none text-base text-slate-900 placeholder:text-slate-400 font-medium"
               />
-              <div className="flex items-center gap-1.5 px-3 py-2 rounded-[14px] bg-slate-100 border border-slate-200 text-slate-500 text-sm font-bold tracking-widest shrink-0">
-                Ctrl K
-              </div>
+              <kbd className="hidden sm:inline-flex items-center px-2 py-1 rounded-lg bg-slate-100 border border-slate-200 text-slate-400 text-xs font-semibold tracking-widest">⌘K</kbd>
             </div>
           </div>
 
           {/* Popular Tags */}
-          <div className="flex flex-wrap items-center justify-center gap-3 mb-14">
-            <span className="text-sm font-bold text-slate-400 uppercase tracking-widest mr-2">Popular</span>
+          <div className="flex flex-wrap items-center justify-center gap-2 mb-10">
+            <span className="text-xs font-semibold text-slate-400 uppercase tracking-widest mr-1">Popular:</span>
             {['ChatGPT', 'Claude', 'Cursor', 'Notion', 'Zapier'].map(tag => (
-              <span key={tag} className="px-4 py-2 bg-slate-100 rounded-[14px] text-sm font-bold text-slate-700 hover:bg-indigo-50 hover:text-indigo-600 cursor-pointer transition-colors border border-slate-200/60">
+              <Link key={tag} href={`/product/${tag.toLowerCase()}`} className="px-3 py-1.5 bg-white rounded-lg text-sm font-semibold text-slate-600 hover:text-indigo-600 hover:bg-indigo-50 cursor-pointer transition-colors border border-slate-200/80">
                 {tag}
-              </span>
+              </Link>
             ))}
           </div>
 
-          {/* Trust Social Proof */}
-          <div className="flex items-center justify-center gap-3">
-            <div className="flex gap-1 text-amber-400">
-              {[1, 2, 3, 4, 5].map((star) => (
-                <Star key={star} className="w-6 h-6 fill-current" />
-              ))}
+          {/* Social Proof */}
+          <div className="flex items-center justify-center gap-2.5">
+            <div className="flex gap-0.5 text-amber-400">
+              {[1,2,3,4,5].map(s => <Star key={s} className="w-4 h-4 fill-current" />)}
             </div>
-            <span className="text-base font-bold text-slate-600">Trusted by 10,000+ professionals</span>
+            <span className="text-sm font-semibold text-slate-500">Trusted by 10,000+ professionals</span>
           </div>
 
         </div>
       </section>
 
-      {/* 2. STATS SECTION (Cards) */}
-      <section className="bg-slate-50 border-b border-slate-200 py-20 relative z-20">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6">
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-6">
+      {/* ═══════════════════════════════════════════ */}
+      {/* 2. STATS BAR */}
+      {/* ═══════════════════════════════════════════ */}
+      <section className="bg-white border-b border-slate-100 py-12">
+        <div className="max-w-5xl mx-auto px-6">
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-6 md:gap-0 md:divide-x md:divide-slate-100">
             {[
               { value: '15k+', label: 'Products' },
               { value: '5k+', label: 'Reviews' },
               { value: '800+', label: 'Comparisons' },
               { value: '300+', label: 'Categories' },
             ].map((stat, i) => (
-              <div key={i} className="bg-white rounded-[24px] p-8 text-center border-2 border-slate-100 shadow-sm hover:shadow-md hover:border-indigo-100 transition-all">
-                <div className="text-4xl md:text-5xl font-black text-slate-900 tracking-tight mb-2">{stat.value}</div>
-                <div className="text-sm md:text-base font-bold text-slate-500 uppercase tracking-widest">{stat.label}</div>
+              <div key={i} className="text-center py-2">
+                <div className="text-3xl md:text-4xl font-black text-slate-900 tracking-tight">{stat.value}</div>
+                <div className="text-xs font-semibold text-slate-400 uppercase tracking-widest mt-1">{stat.label}</div>
               </div>
             ))}
           </div>
         </div>
       </section>
 
+      {/* ═══════════════════════════════════════════ */}
       {/* 3. FEATURED PICKS */}
-      <section className="pt-32 pb-24 max-w-7xl mx-auto px-4 sm:px-6">
-        <div className="flex items-end justify-between mb-12">
-          <div>
-            <h2 className="text-3xl md:text-4xl font-black text-slate-900 tracking-tight mb-2">Featured Picks</h2>
-            <p className="text-slate-500 text-lg font-medium">The most popular and highly rated tools right now.</p>
+      {/* ═══════════════════════════════════════════ */}
+      <section className="bg-[#FAFAFC] py-24">
+        <div className="max-w-6xl mx-auto px-6">
+          <div className="flex items-end justify-between mb-10">
+            <div>
+              <h2 className="text-2xl md:text-3xl font-black text-slate-900 tracking-tight">Featured Picks</h2>
+              <p className="text-slate-500 text-base font-medium mt-1">The most popular and highly rated tools right now.</p>
+            </div>
+            <Link href="/products" className="hidden sm:flex items-center gap-1.5 text-sm text-indigo-600 font-semibold hover:text-indigo-700 transition-colors">
+              View all <ArrowRight className="w-3.5 h-3.5" />
+            </Link>
           </div>
-          <Link href="/products" className="hidden sm:flex items-center gap-2 text-indigo-600 font-bold hover:text-indigo-700 transition-colors">
-            View all products <ArrowRight className="w-4 h-4" />
-          </Link>
-        </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-          {displayProducts.map(product => (
-            <ProductCard key={product.id} product={product} />
-          ))}
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
+            {displayProducts.map(product => (
+              <ProductCard key={product.id} product={product} />
+            ))}
+          </div>
         </div>
       </section>
 
+      {/* ═══════════════════════════════════════════ */}
       {/* 4. TOP CATEGORIES */}
-      <section className="py-24 bg-white border-y border-slate-200">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6">
-          <div className="mb-12">
-            <h2 className="text-3xl md:text-4xl font-black text-slate-900 tracking-tight mb-2">Top Categories</h2>
-            <p className="text-slate-500 text-lg font-medium">Browse software by industry and use-case.</p>
+      {/* ═══════════════════════════════════════════ */}
+      <section className="bg-white py-24 border-y border-slate-100">
+        <div className="max-w-6xl mx-auto px-6">
+          <div className="mb-10">
+            <h2 className="text-2xl md:text-3xl font-black text-slate-900 tracking-tight">Top Categories</h2>
+            <p className="text-slate-500 text-base font-medium mt-1">Browse software by industry and use-case.</p>
           </div>
 
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
+          <div className="grid grid-cols-2 lg:grid-cols-4 gap-4">
             {[
-              { icon: Bot, name: 'AI Tools', count: '250 Tools' },
-              { icon: PenTool, name: 'Design', count: '180 Tools' },
-              { icon: BarChart3, name: 'Marketing', count: '320 Tools' },
-              { icon: Layers, name: 'Productivity', count: '410 Tools' },
+              { icon: Bot, name: 'AI Tools', count: '250 Tools', color: 'bg-indigo-50 text-indigo-600' },
+              { icon: PenTool, name: 'Design', count: '180 Tools', color: 'bg-rose-50 text-rose-600' },
+              { icon: BarChart3, name: 'Marketing', count: '320 Tools', color: 'bg-amber-50 text-amber-600' },
+              { icon: Layers, name: 'Productivity', count: '410 Tools', color: 'bg-emerald-50 text-emerald-600' },
             ].map((cat, i) => (
-              <Link key={i} href="/categories" className="group p-6 bg-slate-50 rounded-[20px] border border-slate-200 hover:border-indigo-200 hover:shadow-lg hover:-translate-y-1 transition-all duration-200 flex flex-col items-center text-center">
-                <div className="w-16 h-16 rounded-[16px] bg-white flex items-center justify-center border border-slate-200 shadow-sm mb-6 group-hover:scale-110 transition-transform">
-                  <cat.icon className="w-8 h-8 text-indigo-600" />
+              <Link key={i} href="/categories" className="group flex flex-col items-center text-center p-8 bg-slate-50 rounded-2xl border border-slate-200/60 hover:border-indigo-200 hover:bg-white hover:shadow-lg transition-all duration-200">
+                <div className={`w-14 h-14 rounded-xl ${cat.color} flex items-center justify-center mb-4 group-hover:scale-110 transition-transform`}>
+                  <cat.icon className="w-7 h-7" />
                 </div>
-                <h3 className="font-bold text-xl text-slate-900 mb-2">{cat.name}</h3>
-                <p className="text-sm font-bold text-slate-500 mb-6">{cat.count}</p>
-                <div className="w-8 h-8 rounded-full bg-slate-200 flex items-center justify-center group-hover:bg-indigo-600 group-hover:text-white transition-colors text-slate-400">
-                  <ArrowRight className="w-4 h-4" />
-                </div>
+                <h3 className="font-bold text-slate-900 text-base">{cat.name}</h3>
+                <p className="text-sm font-medium text-slate-400 mt-0.5">{cat.count}</p>
               </Link>
             ))}
           </div>
         </div>
       </section>
 
+      {/* ═══════════════════════════════════════════ */}
       {/* 5. POPULAR COMPARISONS */}
-      <section className="py-24 bg-slate-50">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6">
-          <div className="mb-12">
-            <h2 className="text-3xl md:text-4xl font-black tracking-tight mb-2 text-slate-900">Popular Comparisons</h2>
-            <p className="text-slate-500 text-lg font-medium">See head-to-head data on pricing, features, and user reviews before you buy.</p>
+      {/* ═══════════════════════════════════════════ */}
+      <section className="bg-[#FAFAFC] py-24">
+        <div className="max-w-6xl mx-auto px-6">
+          <div className="mb-10">
+            <h2 className="text-2xl md:text-3xl font-black text-slate-900 tracking-tight">Popular Comparisons</h2>
+            <p className="text-slate-500 text-base font-medium mt-1">See head-to-head data on pricing, features, and user reviews.</p>
           </div>
           
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
             {[
-              { id: 1, p1: 'ChatGPT', p2: 'Claude', slug: 'chatgpt-vs-claude' },
-              { id: 2, p1: 'Notion', p2: 'ClickUp', slug: 'notion-vs-clickup' },
-              { id: 3, p1: 'Figma', p2: 'Penpot', slug: 'figma-vs-penpot' },
-            ].map((comp) => (
-              <Link key={comp.id} href={`/compare/${comp.slug}`} className="group flex flex-col items-center justify-center p-10 bg-white rounded-[20px] border border-slate-200 shadow-sm hover:border-indigo-600 hover:shadow-lg hover:-translate-y-1 transition-all duration-200 text-center">
-                <div className="flex items-center justify-center gap-6 text-2xl font-black text-slate-900 mb-6">
-                  <span className="group-hover:text-indigo-600 transition-colors">{comp.p1}</span>
-                  <span className="text-sm px-3 py-1 bg-slate-50 text-slate-400 rounded-[12px] border border-slate-100 font-bold">VS</span>
-                  <span className="group-hover:text-indigo-600 transition-colors">{comp.p2}</span>
+              { p1: 'ChatGPT', p2: 'Claude', slug: 'chatgpt-vs-claude' },
+              { p1: 'Notion', p2: 'ClickUp', slug: 'notion-vs-clickup' },
+              { p1: 'Figma', p2: 'Penpot', slug: 'figma-vs-penpot' },
+            ].map((comp, i) => (
+              <Link key={i} href={`/compare/${comp.slug}`} className="group bg-white rounded-2xl border border-slate-200/60 p-8 hover:border-indigo-200 hover:shadow-lg transition-all duration-200 text-center">
+                <div className="flex items-center justify-center gap-4 mb-5">
+                  <div className="w-10 h-10 rounded-xl bg-slate-100 flex items-center justify-center font-black text-slate-700 text-sm">{comp.p1[0]}</div>
+                  <span className="text-xs font-bold text-slate-400 uppercase tracking-widest">vs</span>
+                  <div className="w-10 h-10 rounded-xl bg-slate-100 flex items-center justify-center font-black text-slate-700 text-sm">{comp.p2[0]}</div>
                 </div>
-                <div className="flex gap-1 mb-8">
-                  {[1, 2, 3, 4, 5].map((star) => (
-                    <Star key={star} className="w-5 h-5 fill-amber-400 text-amber-400" />
-                  ))}
-                </div>
-                <div className="flex items-center justify-center gap-2 w-full h-12 bg-slate-50 text-slate-700 font-bold rounded-[14px] group-hover:bg-indigo-600 group-hover:text-white transition-colors">
-                  Compare <ArrowRight className="w-4 h-4" />
+                <div className="font-bold text-slate-900 text-lg mb-1">{comp.p1} vs {comp.p2}</div>
+                <p className="text-sm text-slate-400 font-medium mb-5">Pricing · Features · Reviews</p>
+                <div className="inline-flex items-center gap-1.5 text-sm text-indigo-600 font-semibold group-hover:gap-2.5 transition-all">
+                  Compare <ArrowRight className="w-3.5 h-3.5" />
                 </div>
               </Link>
             ))}
@@ -188,38 +191,32 @@ export default async function HomePage() {
         </div>
       </section>
 
-      {/* 6. COLLECTIONS */}
-      <section className="py-24 bg-white border-y border-slate-200">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6">
-          <div className="mb-12">
-            <h2 className="text-3xl md:text-4xl font-black text-slate-900 tracking-tight mb-2">Curated Collections</h2>
-            <p className="text-slate-500 text-lg font-medium">Hand-picked software lists for specific needs.</p>
+      {/* ═══════════════════════════════════════════ */}
+      {/* 6. CURATED COLLECTIONS */}
+      {/* ═══════════════════════════════════════════ */}
+      <section className="bg-white py-24 border-y border-slate-100">
+        <div className="max-w-6xl mx-auto px-6">
+          <div className="mb-10">
+            <h2 className="text-2xl md:text-3xl font-black text-slate-900 tracking-tight">Curated Collections</h2>
+            <p className="text-slate-500 text-base font-medium mt-1">Hand-picked software lists for specific needs.</p>
           </div>
 
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
             {[
-              'Best AI Tools',
-              'Best HR Software',
-              'Marketing Tools',
-              'Resume Builders'
+              { name: 'Best AI Tools', desc: '50+ tools', gradient: 'from-indigo-600 to-violet-700' },
+              { name: 'Best HR Software', desc: '35+ tools', gradient: 'from-rose-600 to-pink-700' },
+              { name: 'Marketing Tools', desc: '60+ tools', gradient: 'from-amber-600 to-orange-700' },
+              { name: 'Resume Builders', desc: '20+ tools', gradient: 'from-emerald-600 to-teal-700' },
             ].map((collection, i) => (
-              <Link key={i} href="/collections" className="group relative overflow-hidden rounded-[20px] aspect-square flex items-end p-8 hover:-translate-y-1 hover:shadow-xl transition-all duration-300">
-                <div className="absolute inset-0 bg-gradient-to-br from-slate-800 to-slate-900"></div>
+              <Link key={i} href="/collections" className={`group relative overflow-hidden rounded-2xl bg-gradient-to-br ${collection.gradient} p-8 flex flex-col justify-end min-h-[200px] hover:shadow-xl hover:-translate-y-1 transition-all duration-300`}>
+                {/* Glass overlay on hover */}
+                <div className="absolute inset-0 bg-white/0 group-hover:bg-white/10 transition-colors"></div>
                 
-                {/* Decorative Pattern */}
-                <div className="absolute inset-0 opacity-20 bg-[radial-gradient(circle_at_2px_2px,rgba(255,255,255,0.15)_1px,transparent_0)] bg-[size:16px_16px]"></div>
-                
-                <div className="absolute inset-0 bg-gradient-to-t from-slate-900 via-slate-900/60 to-transparent z-10"></div>
-                <div className="absolute inset-0 bg-indigo-500 opacity-0 group-hover:opacity-20 transition-opacity z-0 mix-blend-overlay"></div>
-                
-                {/* Content */}
-                <div className="relative z-20 w-full">
-                  <div className="w-12 h-12 bg-white/10 backdrop-blur-md rounded-[12px] border border-white/20 flex items-center justify-center mb-6">
-                    <Layers className="w-6 h-6 text-white" />
-                  </div>
-                  <h3 className="text-2xl font-black text-white mb-3 leading-tight group-hover:text-indigo-300 transition-colors">{collection}</h3>
-                  <div className="text-sm font-bold text-slate-300 flex items-center gap-2">
-                    View collection <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
+                <div className="relative z-10">
+                  <p className="text-sm font-semibold text-white/70 mb-1">{collection.desc}</p>
+                  <h3 className="text-xl font-black text-white mb-3">{collection.name}</h3>
+                  <div className="inline-flex items-center gap-1.5 text-sm font-semibold text-white/80 group-hover:text-white group-hover:gap-2.5 transition-all">
+                    Explore <ArrowRight className="w-3.5 h-3.5" />
                   </div>
                 </div>
               </Link>
@@ -228,24 +225,27 @@ export default async function HomePage() {
         </div>
       </section>
 
+      {/* ═══════════════════════════════════════════ */}
       {/* 7. NEWSLETTER */}
-      <section className="py-32 bg-slate-50 relative overflow-hidden">
-        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] bg-indigo-500/5 blur-[120px] rounded-full pointer-events-none"></div>
-        <div className="max-w-3xl mx-auto px-4 sm:px-6 text-center relative z-10">
-          <div className="inline-flex items-center justify-center w-20 h-20 rounded-[24px] bg-white border border-slate-200 shadow-sm mb-10 text-indigo-600">
-            <Mail className="w-10 h-10" />
+      {/* ═══════════════════════════════════════════ */}
+      <section className="bg-[#FAFAFC] py-28">
+        <div className="max-w-xl mx-auto px-6 text-center">
+          <div className="inline-flex items-center justify-center w-14 h-14 rounded-2xl bg-indigo-100 text-indigo-600 mb-8">
+            <Mail className="w-7 h-7" />
           </div>
-          <h2 className="text-5xl md:text-[56px] font-black text-slate-900 tracking-tight mb-6">Stay ahead.</h2>
-          <p className="text-xl text-slate-500 font-medium mb-12">Weekly software updates, deals, and insights directly to your inbox. No spam, ever.</p>
+          <h2 className="text-3xl md:text-4xl font-black text-slate-900 tracking-tight mb-4">Stay ahead.</h2>
+          <p className="text-base text-slate-500 font-medium mb-10 leading-relaxed">
+            Weekly software updates, deals, and insights directly to your inbox. No spam, ever.
+          </p>
           
-          <div className="flex w-full max-w-xl mx-auto bg-white p-2 border border-slate-200 rounded-[20px] shadow-sm focus-within:shadow-md focus-within:border-indigo-400 transition-all">
+          <div className="flex items-center bg-white border border-slate-200 rounded-2xl p-1.5 shadow-sm focus-within:border-indigo-400 focus-within:shadow-md transition-all">
             <input 
               type="email" 
               placeholder="Enter your email address" 
-              className="flex-1 h-14 px-4 bg-transparent outline-none text-lg font-medium placeholder:text-slate-400 text-slate-900"
+              className="flex-1 h-12 px-4 bg-transparent outline-none text-base font-medium placeholder:text-slate-400 text-slate-900 min-w-0"
               required
             />
-            <button className="h-14 px-8 rounded-[14px] bg-slate-900 hover:bg-indigo-600 text-white font-bold text-lg transition-colors whitespace-nowrap">
+            <button className="h-12 px-6 rounded-xl bg-slate-900 hover:bg-indigo-600 text-white font-bold text-sm transition-colors whitespace-nowrap shrink-0">
               Subscribe
             </button>
           </div>

@@ -14,53 +14,50 @@ export function ProductCard({ product }: ProductCardProps) {
   return (
     <Link 
       href={`/product/${product.slug}`}
-      className="group block bg-white rounded-[20px] border border-slate-200 shadow-sm hover:shadow-lg hover:border-indigo-200 hover:-translate-y-1 transition-all duration-200 overflow-hidden relative flex flex-col h-full"
+      className="group flex flex-col bg-white rounded-2xl border border-slate-200/60 hover:border-indigo-200 hover:shadow-lg transition-all duration-200 overflow-hidden h-full"
     >
       <div className="p-6 flex flex-col h-full">
         
-        {/* Top Header: Logo */}
-        <div className="mb-4">
-          <div className="w-14 h-14 rounded-[16px] bg-slate-50 flex items-center justify-center border border-slate-100 shrink-0 shadow-sm">
-            <span className="text-2xl font-black text-indigo-600">
-              {product.name.charAt(0)}
-            </span>
-          </div>
+        {/* Logo */}
+        <div className="w-12 h-12 rounded-xl bg-slate-100 flex items-center justify-center mb-4 shrink-0">
+          <span className="text-lg font-black text-indigo-600">
+            {product.name.charAt(0)}
+          </span>
         </div>
 
         {/* Title */}
-        <div className="mb-2">
-          <h3 className="font-bold text-xl text-slate-900 tracking-tight group-hover:text-indigo-600 transition-colors">
-            {product.name}
-          </h3>
-        </div>
+        <h3 className="font-bold text-lg text-slate-900 tracking-tight group-hover:text-indigo-600 transition-colors mb-1">
+          {product.name}
+        </h3>
 
         {/* Tagline */}
-        <div className="mb-3">
-          <p className="text-sm text-slate-500 font-medium line-clamp-1">
-            {product.tagline || product.description || 'Verified software product.'}
-          </p>
-        </div>
+        <p className="text-sm text-slate-500 font-medium line-clamp-1 mb-3">
+          {product.tagline || product.description || 'Verified software product.'}
+        </p>
 
         {/* Rating */}
-        <div className="flex gap-1 mb-5">
-          {[1, 2, 3, 4, 5].map((star) => (
-            <Star key={star} className="w-4 h-4 fill-amber-400 text-amber-400" />
-          ))}
+        <div className="flex items-center gap-2 mb-4">
+          <div className="flex gap-0.5">
+            {[1, 2, 3, 4, 5].map((star) => (
+              <Star key={star} className="w-3.5 h-3.5 fill-amber-400 text-amber-400" />
+            ))}
+          </div>
+          <span className="text-xs font-semibold text-slate-400">5.0</span>
         </div>
 
         {/* Badges */}
-        <div className="flex flex-wrap gap-2 mb-6 mt-1">
-          <span className="inline-flex items-center px-3 py-1 rounded-[12px] bg-indigo-50 text-indigo-700 text-[11px] font-bold tracking-widest uppercase">
+        <div className="flex flex-wrap gap-1.5 mb-5">
+          <span className="px-2.5 py-0.5 rounded-md bg-indigo-50 text-indigo-600 text-[11px] font-semibold uppercase tracking-wider">
             {pricingType}
           </span>
-          <span className="inline-flex items-center px-3 py-1 rounded-[12px] bg-slate-100 text-slate-600 text-[11px] font-bold tracking-widest uppercase border border-slate-200/50">
+          <span className="px-2.5 py-0.5 rounded-md bg-slate-100 text-slate-500 text-[11px] font-semibold uppercase tracking-wider">
             {category}
           </span>
         </div>
 
-        {/* Action Button */}
-        <div className="mt-auto pt-4">
-          <div className="flex items-center justify-center gap-2 w-full h-12 bg-slate-50 text-slate-700 font-bold text-sm rounded-[14px] group-hover:bg-indigo-600 group-hover:text-white transition-all duration-300 shadow-sm group-hover:shadow-indigo-500/25 border border-slate-200 group-hover:border-indigo-600">
+        {/* CTA */}
+        <div className="mt-auto pt-4 border-t border-slate-100">
+          <div className="flex items-center justify-between text-sm font-semibold text-slate-500 group-hover:text-indigo-600 transition-colors">
             <span>View Product</span>
             <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
           </div>
